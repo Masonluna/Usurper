@@ -7,6 +7,9 @@
 
 namespace Usurper {
 
+	// Callbacks
+	void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
+
 	class Window
 	{
 	public:
@@ -14,6 +17,8 @@ namespace Usurper {
 		Window(int width, int height, int scale, std::string title);
 		~Window();
 		StatusCode Init();
+
+
 
 
 		GLFWwindow* GetGLFWwindow() const { return m_GLFWwindow; }

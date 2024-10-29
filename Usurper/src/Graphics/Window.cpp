@@ -40,6 +40,7 @@ Usurper::StatusCode Usurper::Window::Init()
 	glfwMakeContextCurrent(m_GLFWwindow);
 
 	// TODO: Set up Callbacks
+	glfwSetFramebufferSizeCallback(m_GLFWwindow, FramebufferSizeCallback);
 
 	// Glad
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -48,4 +49,9 @@ Usurper::StatusCode Usurper::Window::Init()
 		return ERROR;
 	}
 	return SUCCESS;
+}
+
+void Usurper::FramebufferSizeCallback(GLFWwindow* window, int width, int height)
+{
+	GLCall(glViewport(0, 0, width, height));
 }
