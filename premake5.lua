@@ -11,6 +11,7 @@ workspace "Usurper"
     IncludeDir = {}
     IncludeDir["Glad"] = "Usurper/vendor/Glad/include"
     IncludeDir["GLFW"] = "Usurper/vendor/GLFW/include"
+    IncludeDir["glm"]  = "Usurper/vendor/glm/glm-1.0.1"
 
 
     project "Usurper"
@@ -30,7 +31,8 @@ workspace "Usurper"
         includedirs {
             "%{prj.name}/src",
             "%{IncludeDir.GLFW}",
-            "%{IncludeDir.Glad}"
+            "%{IncludeDir.Glad}",
+            "%{IncludeDir.glm}"
         }
 
         libdirs {
