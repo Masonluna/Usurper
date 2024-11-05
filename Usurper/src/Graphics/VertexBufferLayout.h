@@ -1,8 +1,8 @@
 #pragma once
+#include "Core/Core.h"
 #include <vector>
 #include <glad/glad.h>
-#include <assert.h>
-#include "Renderer.h"
+
 
 namespace Usurper {
 

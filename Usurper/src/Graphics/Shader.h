@@ -1,13 +1,14 @@
-
 #pragma once
 
-#include <glad/glad.h>
+#include "Core/Core.h"
 
+#include <glad/glad.h>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "Renderer.h"
+#include <glm/glm.hpp>
+
 
 namespace Usurper {
 
@@ -97,9 +98,14 @@ namespace Usurper {
 			GLCall(glDeleteShader(fragment));
 		}
 		// use/activate shader
-		void use()
+		void Bind() const
 		{
 			GLCall(glUseProgram(ID));
+		}
+
+		void Unbind() const
+		{
+			GLCall(glUseProgram(0));
 		}
 
 		// Utility uniform functions

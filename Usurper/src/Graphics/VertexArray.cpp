@@ -1,6 +1,5 @@
-
+#include "Core/Core.h"
 #include "VertexArray.h"
-
 #include "Renderer.h"
 
 Usurper::VertexArray::VertexArray()

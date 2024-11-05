@@ -1,8 +1,11 @@
 #pragma once
-#include <string>
-#include "Graphics/Renderer.h"
 #include "Graphics/Window.h"
+#include "Graphics/VertexArray.h"
+#include "Camera.h"
+#include "Graphics/stb_image.h"
 
+#include <string>
+#include <iostream>
 
 namespace Usurper {
 	struct ApplicationSpec

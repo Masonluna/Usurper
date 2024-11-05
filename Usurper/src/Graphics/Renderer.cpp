@@ -3,23 +3,17 @@
 #include <iostream>
 
 
-void Usurper::GLClearError()
+void Usurper::Renderer::Clear()
 {
-	while (glGetError() != GL_NO_ERROR);
+	GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
+	GLCall(glClear(GL_COLOR_BUFFER_BIT));
 }
 
-bool Usurper::GLLogCall(const char* function, const char* file, int line)
+void Usurper::Renderer::Draw(const VertexBuffer& vb, const IndexBuffer& ib, const Shader& shader)
 {
-	while (GLenum error = glGetError())
-	{
-		std::cout << "[OpenGL Error] (" << error << "): " << function << " "
-			<< file << ":line " << line << std::endl;
-		return false;
-	}
-	return true;
+	shader.Bind();
+	vb.Bind();
+	ib.Bind();
+	GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 
-void Usurper::Renderer::Init()
-{
-
-}

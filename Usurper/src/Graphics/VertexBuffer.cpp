@@ -1,5 +1,5 @@
+#include "Core/Core.h"
 #include "VertexBuffer.h"
-
 #include "Renderer.h"
 
 Usurper::VertexBuffer::VertexBuffer(const void* data, unsigned int size)
