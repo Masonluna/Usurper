@@ -3,6 +3,9 @@
 
 
 namespace Usurper {
+	Shader shader;
+	unsigned int containerTexture;
+	unsigned int containerSpecTexture;
 	void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
 	void CursorPosCallback(GLFWwindow* window, double xposIn, double yposIn);
 	void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
@@ -65,19 +68,22 @@ void Usurper::Application::Run()
 	glm::vec3 position(0.0f, 0.0f, 0.0f);
 
 	// ========== STATE ==========
-
-	Shader shader("3.3.shader.vs.glsl", "3.3.shader.fs.glsl");
+	shader = Shader("resources/3.3.shader.vs.glsl", "resources/3.3.shader.fs.glsl");
 
 	VertexArray va;
 	VertexBuffer vb(vertices, sizeof(vertices));
 	VertexBufferLayout layout;
+	layout.Push<float>(3);
 	layout.Push<float>(3);
 	layout.Push<float>(2);
 	va.AddBuffer(vb, layout);
 
 	IndexBuffer ib(indices, 6);
 
+
 	m_Mesh = std::unique_ptr<Mesh>(new Mesh(va, vb, ib));
+
+	shader.Bind();
 
 	// Start Game Loop
 	while (!glfwWindowShouldClose(m_GLFWwindow)) {
@@ -88,12 +94,18 @@ void Usurper::Application::Run()
 }
 void Usurper::Application::OnRender()
 {
-
 	// Clear
 	m_Renderer.Clear();
 
+	shader.Bind();
+	GLCall(glActiveTexture(GL_TEXTURE0));
+	GLCall(glBindTexture(GL_TEXTURE_2D, containerTexture));
+	GLCall(glActiveTexture(GL_TEXTURE1));
+	GLCall(glBindTexture(GL_TEXTURE_2D, containerSpecTexture));
 	// Draw
-	//m_Renderer.Draw(vb, ib, shader);
+	shader.Bind();
+	m_Mesh->GetVA().Bind();
+	m_Renderer.Draw(m_Mesh->GetVB(), m_Mesh->GetIB(), shader);
 	// Swap
 	glfwSwapBuffers(m_GLFWwindow);
 
@@ -107,8 +119,6 @@ void Usurper::Application::Loop()
 {
 	OnUpdate();
 	OnRender();
-
-	glfwSwapBuffers(m_GLFWwindow);
 	glfwPollEvents();
 }
 

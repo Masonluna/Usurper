@@ -13,7 +13,6 @@ namespace Usurper {
 		Window(int width, int height, int scale, std::string title);
 		~Window();
 		StatusCode Init();
-		void Resize(int width, int height);
 
 
 
