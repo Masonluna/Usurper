@@ -1,6 +1,5 @@
 #include "Core/Core.h"
 #include "IndexBuffer.h"
-#include "Renderer.h"
 
 
 Usurper::IndexBuffer::IndexBuffer(const unsigned int* data, unsigned int count)

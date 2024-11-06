@@ -6,6 +6,7 @@
 
 #include <string>
 #include <iostream>
+#include <Graphics/Mesh.h>
 
 namespace Usurper {
 	struct ApplicationSpec
@@ -34,6 +35,7 @@ namespace Usurper {
 		ApplicationSpec m_Spec;
 		Renderer m_Renderer;
 		Window m_Window;
+		std::unique_ptr<Mesh> m_Mesh;
 		GLFWwindow* m_GLFWwindow = nullptr;
 	};
 }

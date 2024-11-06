@@ -4,7 +4,7 @@
 
 namespace Usurper {
 	void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
-	void MouseCallback(GLFWwindow* window, double xposIn, double yposIn);
+	void CursorPosCallback(GLFWwindow* window, double xposIn, double yposIn);
 	void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 	unsigned int LoadTexture(const char* path);
 
@@ -42,68 +42,19 @@ void Usurper::Application::Run()
 	m_GLFWwindow = m_Window.GetGLFWwindow();
 
 	// TODO: SET UP CALLBACKS
-
+	glfwSetFramebufferSizeCallback(m_GLFWwindow, FramebufferSizeCallback);
+	glfwSetCursorPosCallback(m_GLFWwindow, CursorPosCallback);
+	glfwSetScrollCallback(m_GLFWwindow, ScrollCallback);
 
 	// Initialize Game
 	// Initialize Detla t
 
-	GLCall(glEnable(GL_DEPTH_TEST));
-
-	glm::vec3 cubePositions[] = {
-		glm::vec3(0.0f,  0.0f,  0.0f),
-		glm::vec3(2.0f,  5.0f, -15.0f),
-		glm::vec3(-1.5f, -2.2f, -2.5f),
-		glm::vec3(-3.8f, -2.0f, -12.3f),
-		glm::vec3(2.4f, -0.4f, -3.5f),
-		glm::vec3(-1.7f,  3.0f, -7.5f),
-		glm::vec3(1.3f, -2.0f, -2.5f),
-		glm::vec3(1.5f,  2.0f, -2.5f),
-		glm::vec3(1.5f,  0.2f, -1.5f),
-		glm::vec3(-1.3f,  1.0f, -1.5f)
-	};
-
 	float vertices[] = {
-		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+		// position				// color			// tex coord
+		0.25f, 0.25f, 0.0f,		1.0f, 0.0f, 0.0f,	1.0f, 1.0f,
+		0.25f, -0.25f, 0.0f,	0.0f, 1.0f, 0.0f,	1.0f, 0.0f,
+		-0.25f, -0.25f, 0.0f,	0.0f, 0.0f, 1.0f,	0.0f, 0.0f,
+		-0.25f, 0.25f, 0.0f,	1.0f, 1.0f, 0.0f,	0.0f, 1.0f
 	};
 
 	unsigned int indices[] = {
@@ -115,13 +66,19 @@ void Usurper::Application::Run()
 
 	// ========== STATE ==========
 
+	Shader shader("3.3.shader.vs.glsl", "3.3.shader.fs.glsl");
+
 	VertexArray va;
 	VertexBuffer vb(vertices, sizeof(vertices));
 	VertexBufferLayout layout;
 	layout.Push<float>(3);
 	layout.Push<float>(2);
 	va.AddBuffer(vb, layout);
-	
+
+	IndexBuffer ib(indices, 6);
+
+	m_Mesh = std::unique_ptr<Mesh>(new Mesh(va, vb, ib));
+
 	// Start Game Loop
 	while (!glfwWindowShouldClose(m_GLFWwindow)) {
 		Loop();
@@ -136,7 +93,7 @@ void Usurper::Application::OnRender()
 	m_Renderer.Clear();
 
 	// Draw
-	//m_Renderer.Draw();
+	//m_Renderer.Draw(vb, ib, shader);
 	// Swap
 	glfwSwapBuffers(m_GLFWwindow);
 
@@ -162,7 +119,7 @@ void Usurper::FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 	GLCall(glViewport(0, 0, width, height));
 }
 
-void Usurper::MouseCallback(GLFWwindow* window, double xpos, double ypos)
+void Usurper::CursorPosCallback(GLFWwindow* window, double xpos, double ypos)
 {
 	if (firstMouse) {
 		lastX = xpos;
