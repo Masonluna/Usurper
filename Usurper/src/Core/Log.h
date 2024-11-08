@@ -2,12 +2,8 @@
 
 #include "Core.h"
 
-
-// This ignores all warnings raised inside External headers
-#pragma warning(push, 0)
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
-#pragma warning(pop)
 
 
 
@@ -28,8 +24,11 @@ namespace Usurper {
 
 }
 
-#define US_ERROR(...) ::Usurper::Log::GetLogger()->error(__VA_ARGS__)
-#define US_TRACE(...) ::Usurper::Log::GetLogger()->trace(__VA_ARGS__)
-#define US_INFO(...)  ::Usurper::Log::GetLogger()->info(__VA_ARGS__)
-#define US_WARN(...)  ::Usurper::Log::GetLogger()->warn(__VA_ARGS__)
-#define US_FATAL(...) ::Usurper::Log::GetLogger()->critical(__VA_ARGS__)
+#ifndef US_LOG
+	#define US_LOG
+	#define US_ERROR(...) ::Usurper::Log::GetLogger()->error(__VA_ARGS__)
+	#define US_TRACE(...) ::Usurper::Log::GetLogger()->trace(__VA_ARGS__)
+	#define US_INFO(...)  ::Usurper::Log::GetLogger()->info(__VA_ARGS__)
+	#define US_WARN(...)  ::Usurper::Log::GetLogger()->warn(__VA_ARGS__)
+	#define US_FATAL(...) ::Usurper::Log::GetLogger()->critical(__VA_ARGS__)
+#endif

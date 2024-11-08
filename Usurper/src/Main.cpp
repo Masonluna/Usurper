@@ -1,5 +1,5 @@
-#include "Application.h"
 #include "Log.h"
+#include "Application.h"
 
 int main()
 {

@@ -1,5 +1,5 @@
 #include "Core.h"
-
+#include "Log.h"
 
 void Usurper::GLClearError()
 {
@@ -10,8 +10,7 @@ bool Usurper::GLLogCall(const char* function, const char* file, int line)
 {
 	while (GLenum error = glGetError())
 	{
-		std::cout << "[OpenGL Error] (" << error << "): " << function << " "
-			<< file << ":line " << line << std::endl;
+		US_ERROR("{0}", error);
 		return false;
 	}
 	return true;

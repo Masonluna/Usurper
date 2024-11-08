@@ -1,4 +1,3 @@
-#include "Core.h"
 #include "Application.h"
 
 
@@ -40,8 +39,9 @@ void Usurper::Application::Run()
 
 	// Initialize Window
 	if (m_Window.Init() == SUCCESS) {
-		std::cout << "Successfully Initialized window" << std::endl;
+		US_INFO("Successfully Initialized Window");
 	}
+
 	m_GLFWwindow = m_Window.GetGLFWwindow();
 
 	// TODO: SET UP CALLBACKS
@@ -198,7 +198,7 @@ unsigned int Usurper::LoadTexture(const char* path)
 		stbi_image_free(data);
 	}
 	else {
-		std::cout << "Texture failed to load at path: " << path << std::endl;
+		US_ERROR("{0} {1}", "Texture failed to load at path : ", path);
 		stbi_image_free(data);
 	}
 

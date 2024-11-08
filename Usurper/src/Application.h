@@ -1,13 +1,13 @@
 #pragma once
 #include "Window.h"
+#include "Core.h"
 #include "VertexArray.h"
 #include "Camera.h"
 #include "stb_image.h"
 #include "Renderer.h"
+#include "Mesh.H"
 
 #include <string>
-#include <iostream>
-#include <Graphics/Mesh.h>
 
 namespace Usurper {
 	struct ApplicationSpec

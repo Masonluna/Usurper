@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Core.h"
+#include "Log.h"
 
-#include <glad/glad.h>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -49,7 +49,7 @@ namespace Usurper {
 			}
 			catch (std::ifstream::failure e)
 			{
-				std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+				US_ERROR("ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ");
 			}
 			const char* vShaderCode = vertexCode.c_str();
 			const char* fShaderCode = fragmentCode.c_str();
@@ -67,7 +67,7 @@ namespace Usurper {
 			GLCall(glGetShaderiv(vertex, GL_COMPILE_STATUS, &success));
 			if (!success) {
 				GLCall(glGetShaderInfoLog(vertex, 512, NULL, infoLog));
-				std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+				US_ERROR("{0}:\n{1}", "ERROR::SHADER::VERTEX::COMPILATION_FAILED", infoLog);
 			};
 
 			// fragment Shader
@@ -78,7 +78,7 @@ namespace Usurper {
 			GLCall(glGetShaderiv(fragment, GL_COMPILE_STATUS, &success));
 			if (!success) {
 				GLCall(glGetShaderInfoLog(fragment, 512, NULL, infoLog));
-				std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+				US_ERROR("{0}:\n{1}", "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED", infoLog);
 			};
 
 			// shader program
@@ -91,7 +91,7 @@ namespace Usurper {
 			if (!success)
 			{
 				GLCall(glGetProgramInfoLog(ID, 512, NULL, infoLog));
-				std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+				US_ERROR("{0}:\n{1}", "ERROR::SHADER::PROGRAM::LINKING_FAILED", infoLog);
 			};
 
 			// Delete the shaders that are no longer necessary now that they're linked

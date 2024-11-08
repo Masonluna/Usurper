@@ -1,5 +1,4 @@
 #include "Window.h"
-#include <iostream>
 
 Usurper::Window::Window()
 {
@@ -33,17 +32,17 @@ Usurper::StatusCode Usurper::Window::Init()
 	// GLFW window
 	m_GLFWwindow = glfwCreateWindow(m_Width * m_Scale, m_Height * m_Scale, m_Title.c_str(), NULL, NULL);
 	if (!m_GLFWwindow) {
-		std::cout << "Failed to create GLFW window" << std::_Get_asan_aligned_first_end;
+		US_ERROR("Failed to create GLFW window");
 		glfwTerminate();
-		return ERROR;
+		return FAILURE;
 	}
 	glfwMakeContextCurrent(m_GLFWwindow);
 
 	// Glad
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-		std::cout << "Failed to initialize GLAD" << std::endl;
+		US_ERROR("Failed to initialize GLAD");
 		glfwTerminate();
-		return ERROR;
+		return FAILURE;
 	}
 	return SUCCESS;
 }
