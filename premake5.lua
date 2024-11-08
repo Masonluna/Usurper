@@ -9,10 +9,10 @@ workspace "Usurper"
     outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
     IncludeDir = {}
-    IncludeDir["Glad"] = "Usurper/vendor/Glad/include"
-    IncludeDir["GLFW"] = "Usurper/vendor/GLFW/include"
-    IncludeDir["glm"]  = "Usurper/vendor/glm/glm-1.0.1"
-
+    IncludeDir["Glad"]   = "Usurper/vendor/Glad/include"
+    IncludeDir["GLFW"]   = "Usurper/vendor/GLFW/include"
+    IncludeDir["glm"]    = "Usurper/vendor/glm/glm-1.0.1"
+    IncludeDir["spdlog"] = "Usurper/vendor/spdlog/include"
 
     project "Usurper"
         location "Usurper"
@@ -35,15 +35,18 @@ workspace "Usurper"
             "%{prj.name}/src/Graphics",
             "%{IncludeDir.GLFW}",
             "%{IncludeDir.Glad}",
-            "%{IncludeDir.glm}"
+            "%{IncludeDir.glm}",
+            "%{IncludeDir.spdlog}"
         }
 
         libdirs {
-            "%{prj.name}/vendor/GLFW/lib"
+            "%{prj.name}/vendor/GLFW/lib",
+            "%{prj.name}/vendor/spdlog/lib"
         }
         links {
             "glfw3.lib",
-            "opengl32.lib"
+            "opengl32.lib",
+            "spdlog.lib"
         }
 
         filter "system:windows"
@@ -56,3 +59,6 @@ workspace "Usurper"
 
         filter "configurations:Release"
             optimize "On"
+
+        filter "action:vs*"
+            buildoptions { "/utf-8" }

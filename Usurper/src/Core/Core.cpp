@@ -1,5 +1,5 @@
 #include "Core.h"
-#pragma once
+
 
 void Usurper::GLClearError()
 {

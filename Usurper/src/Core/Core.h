@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <iostream>
 
-#define OPTIMIZE 0
+#define OPTIMIZE 1
 
 namespace Usurper {
 	enum StatusCode
@@ -19,7 +19,7 @@ namespace Usurper {
 
 #define ASSERT(x) if (!(x)) __debugbreak();
 
-#ifdef OPTIMIZE 0
+#if OPTIMIZE
 
 #define GLCall(x) GLClearError();\
 	x;\
