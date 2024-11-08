@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core/Core.h"
+#include "Core.h"
 
 #include <glad/glad.h>
 #include <string>

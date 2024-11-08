@@ -13,20 +13,9 @@ namespace Usurper {
 		ERROR
 	};
 
-	inline void GLClearError()
-	{
-		while (glGetError() != GL_NO_ERROR);
-	}
-	inline bool GLLogCall(const char* function, const char* file, int line)
-	{
-		while (GLenum error = glGetError())
-		{
-			std::cout << "[OpenGL Error] (" << error << "): " << function << " "
-				<< file << ":line " << line << std::endl;
-			return false;
-		}
-		return true;
-	}
+	void GLClearError();
+	bool GLLogCall(const char* function, const char* file, int line);
+
 
 #define ASSERT(x) if (!(x)) __debugbreak();
 

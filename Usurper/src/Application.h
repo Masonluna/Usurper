@@ -1,8 +1,9 @@
 #pragma once
-#include "Graphics/Window.h"
-#include "Graphics/VertexArray.h"
+#include "Window.h"
+#include "VertexArray.h"
 #include "Camera.h"
-#include "Graphics/stb_image.h"
+#include "stb_image.h"
+#include "Renderer.h"
 
 #include <string>
 #include <iostream>

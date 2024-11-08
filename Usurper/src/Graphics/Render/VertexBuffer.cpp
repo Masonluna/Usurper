@@ -1,4 +1,4 @@
-#include "Core/Core.h"
+#include "Core.h"
 #include "VertexBuffer.h"
 #include "Renderer.h"
 

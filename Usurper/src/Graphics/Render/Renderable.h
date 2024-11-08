@@ -1,6 +1,6 @@
 #pragma once
-#include "Graphics/Shader.h"
-#include "Graphics/Mesh.h"
+#include "Shader.h"
+#include "Mesh.h"
 
 namespace Usurper {
 

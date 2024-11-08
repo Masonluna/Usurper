@@ -1,7 +1,7 @@
 #pragma once
-#include "Graphics/VertexArray.h"
-#include "Graphics/VertexBuffer.h"
-#include "Graphics/IndexBuffer.h"
+#include "VertexArray.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 
 namespace Usurper {
 

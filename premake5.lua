@@ -30,6 +30,9 @@ workspace "Usurper"
 
         includedirs {
             "%{prj.name}/src",
+            "%{prj.name}/src/Core",
+            "%{prj.name}/src/Graphics/Render",
+            "%{prj.name}/src/Graphics",
             "%{IncludeDir.GLFW}",
             "%{IncludeDir.Glad}",
             "%{IncludeDir.glm}"
