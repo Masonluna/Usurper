@@ -1,7 +1,6 @@
 #pragma once
 
 #include <glad/glad.h>
-#include <iostream>
 
 #define US_OPT 1
 
