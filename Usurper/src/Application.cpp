@@ -68,7 +68,7 @@ void Usurper::Application::Run()
 	glm::vec3 position(0.0f, 0.0f, 0.0f);
 
 	// ========== STATE ==========
-	shader = Shader("resources/3.3.shader.vs.glsl", "resources/3.3.shader.fs.glsl");
+	shader = Shader();
 
 	VertexArray va;
 	VertexBuffer vb(vertices, sizeof(vertices));
@@ -83,7 +83,7 @@ void Usurper::Application::Run()
 
 	m_Mesh = std::unique_ptr<Mesh>(new Mesh(va, vb, ib));
 
-	shader.Bind();
+	shader.Use();
 
 	// Start Game Loop
 	while (!glfwWindowShouldClose(m_GLFWwindow)) {
@@ -97,13 +97,13 @@ void Usurper::Application::OnRender()
 	// Clear
 	m_Renderer.Clear();
 
-	shader.Bind();
+	shader.Use();
 	GLCall(glActiveTexture(GL_TEXTURE0));
 	GLCall(glBindTexture(GL_TEXTURE_2D, containerTexture));
 	GLCall(glActiveTexture(GL_TEXTURE1));
 	GLCall(glBindTexture(GL_TEXTURE_2D, containerSpecTexture));
 	// Draw
-	shader.Bind();
+	shader.Use();
 	m_Mesh->GetVA().Bind();
 	m_Renderer.Draw(m_Mesh->GetVB(), m_Mesh->GetIB(), shader);
 	// Swap

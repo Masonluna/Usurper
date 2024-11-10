@@ -13,7 +13,7 @@ namespace Usurper {
 	{
 	public:
 		void Clear();
-		void Draw(const VertexBuffer &vb, const IndexBuffer &ib, const Shader &shader);
+		void Draw(const VertexBuffer &vb, const IndexBuffer &ib, Shader &shader);
 
 	private:
 	};

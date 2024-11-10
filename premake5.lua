@@ -33,6 +33,7 @@ workspace "Usurper"
             "%{prj.name}/src/Core",
             "%{prj.name}/src/Graphics/Render",
             "%{prj.name}/src/Graphics",
+            "%{prj.name}/src/Res",
             "%{IncludeDir.GLFW}",
             "%{IncludeDir.Glad}",
             "%{IncludeDir.glm}",
