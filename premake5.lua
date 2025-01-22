@@ -8,12 +8,6 @@ workspace "Usurper"
 
     outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-    IncludeDir = {}
-    IncludeDir["Glad"]   = "Usurper/vendor/Glad/include"
-    IncludeDir["GLFW"]   = "Usurper/vendor/GLFW/include"
-    IncludeDir["glm"]    = "Usurper/vendor/glm/glm-1.0.1"
-    IncludeDir["spdlog"] = "Usurper/vendor/spdlog/include"
-
     project "Usurper"
         location "Usurper"
         kind "ConsoleApp"
@@ -24,42 +18,36 @@ workspace "Usurper"
 
         files {
             "%{prj.name}/src/**.h",
-            "%{prj.name}/src/**.cpp",
-            "%{prj.name}/vendor/Glad/src/glad.c"
+            "%{prj.name}/src/**.cpp"
         }
 
         includedirs {
             "%{prj.name}/src",
-            "%{prj.name}/src/Core",
-            "%{prj.name}/src/Graphics/Render",
-            "%{prj.name}/src/Graphics",
-            "%{prj.name}/src/Res",
-            "%{IncludeDir.GLFW}",
-            "%{IncludeDir.Glad}",
-            "%{IncludeDir.glm}",
-            "%{IncludeDir.spdlog}"
+            "Scribble2D/Scribble2D-Core/include"
         }
 
         libdirs {
-            "%{prj.name}/vendor/GLFW/lib",
-            "%{prj.name}/vendor/spdlog/lib"
+            "Scribble2D/bin/Debug-windows-x86_64/Scribble2D-Core",
+            "Scribble2D/bin/Release-windows-x86_64/Scribble2D-Core"
         }
-        links {
-            "glfw3.lib",
-            "opengl32.lib",
-            "spdlog.lib"
-        }
+
+        dependson { "Scribble2D-Core" }
 
         filter "system:windows"
             cppdialect "C++17"
-            staticruntime "Off"
+            staticruntime "On"
             systemversion "latest"
 
         filter "configurations:Debug"
+            links { "Scribble2D-Core_Debug.lib" }
             symbols "On"
 
         filter "configurations:Release"
+            links { "Scribble2D-Core_Release.lib" }
             optimize "On"
 
         filter "action:vs*"
             buildoptions { "/utf-8" }
+
+
+        include "Scribble2D/Scribble2D-Core"
