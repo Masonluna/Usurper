@@ -21,5 +21,21 @@ namespace Usurper
 	};
 
 
+	class App : public Scribble::Application
+	{
+	public:
+		App(Scribble::WindowSpecs specs)
+			: Scribble::Application(specs)
+		{
+			PushLayer(new HelloLayer());
+		}
+		~App() {}
+	};
 
+}
+
+Scribble::Application* Scribble::CreateApplication()
+{
+	Scribble::WindowSpecs specs("App", 1920, 1080);
+	return new Usurper::App(specs);
 }
